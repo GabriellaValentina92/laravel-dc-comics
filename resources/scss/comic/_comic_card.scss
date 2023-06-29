@@ -10,6 +10,7 @@
 
 .box-card {
     flex: 0 0 250px;
+    height: 100%;
     padding: 0.5rem;
     margin-right: 0.8rem;
 
@@ -22,7 +23,32 @@
     p {
         display: -webkit-box;
         overflow: hidden;
-        -webkit-line-clamp: 6;
+        -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+        border: 1px solid black;
+        border-radius: 0.3rem;
+        padding-inline: 0.5rem;
+    }
+}
+
+.containerId {
+    max-width: 1000px;
+    margin-top: 10px;
+    margin-inline: auto;
+    padding: 0.5rem;
+    text-align: center;
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    img {
+        max-width: 300px;
+        margin-bottom: 0.6rem;
     }
 }

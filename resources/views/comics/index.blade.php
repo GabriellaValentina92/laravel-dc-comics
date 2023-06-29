@@ -15,10 +15,11 @@
                     <li class="list-group-item">{{$comic->sale_date}}</li>
                     <li class="list-group-item">$ {{$comic->price}}</li>
                 </ul>
-                {{-- <div class="card-body">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div> --}}
+                <div class="card-body">
+                    <a href="{{route('comics.show', ['comic' => $comic->id ])}}" class="card-link">view</a>
+                    <a href="#" class="card-link">edit</a>
+                    <a href="#" class="card-link">delete</a>
+                </div>
             </div>    
         @endforeach
     </div>
