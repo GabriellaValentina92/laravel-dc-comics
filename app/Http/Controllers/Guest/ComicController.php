@@ -15,7 +15,7 @@ class ComicController extends Controller
      */
     public function index()
     {
-        $comics = Comic::all(); //oppure per la paginazione Comic::pagination(n. di elementi che si voglono mostrare)
+        $comics = Comic::all(); //oppure per la paginazione Comic::paginate(n. di elementi che si voglono mostrare)
         return view('comics.index', compact('comics'));
     }
 
@@ -26,7 +26,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        return view('comics.create');
     }
 
     /**

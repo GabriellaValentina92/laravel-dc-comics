@@ -1,7 +1,9 @@
 @extends('layout.base')
 
 @section('content_comic')
-    <div class="container_card">
+
+<a class="btn btn-primary" href="{{route('comics.create')}}"> Select Comics</a>
+<div class="container_card">
         @foreach ($comics as $comic)
             <div class="card box-card">
                 <img src="{{$comic->thumb}}" class="card-img-top" alt="...">
