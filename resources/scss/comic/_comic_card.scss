@@ -1,0 +1,28 @@
+.container_card {
+    max-width: 1200px;
+    padding: 1rem;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-card {
+    flex: 0 0 250px;
+    padding: 0.5rem;
+    margin-right: 0.8rem;
+
+    img {
+        max-width: 250px;
+        height: 300px;
+        object-fit: cover;
+    }
+
+    p {
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+    }
+}
