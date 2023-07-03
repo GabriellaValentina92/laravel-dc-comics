@@ -2,6 +2,12 @@
 
 @section('content_comic')
 
+@if (session('delete_success'))
+    <div class="alert alert-danger">  
+        {{ session('delete_success') }}
+    </div>
+@endif
+
 <a class="btn btn-primary" href="{{route('comics.create')}}"> Select Comics</a>
 <div class="container_card">
         @foreach ($comics as $comic)
@@ -19,8 +25,12 @@
                 </ul>
                 <div class="card-body">
                     <a href="{{route('comics.show', ['comic' => $comic->id ])}}" class="card-link">view</a>
-                    <a href="#" class="card-link">edit</a>
-                    <a href="#" class="card-link">delete</a>
+                    <a href="{{route('comics.edit', ['comic' => $comic->id ])}}" class="card-link">edit</a>
+                    <form action="{{route('comics.destroy', ['comic' => $comic->id ])}}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button class="btn btn-primary">Delete</button>
+                    </form>
                 </div>
             </div>    
         @endforeach

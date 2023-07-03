@@ -7,7 +7,18 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ComicController extends Controller
-{
+{  
+    //Metodo 2: spostare l'array rendendo il tutto dinamico 
+    // private $validation = [
+    //     'title'=> 'required|string|max:100',
+    //     'thumb'=> 'required|url',
+    //     'description' => 'required|string',
+    //     'series' => 'required|string|max:50',
+    //     'type' => 'required|string|max:30',
+    //     'sale_date'=> 'required|date',
+    //     'price' => 'required|decimal:2',
+        
+    // ];
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +48,7 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //validare i dati 
+        //validare i dati metodo 1
         $request ->validate([
             'title'=> 'required|string|max:100',
             'thumb'=> 'required|url',
@@ -48,6 +59,9 @@ class ComicController extends Controller
             'price' => 'required|decimal:2',
             
         ]);
+
+        //metodo 2
+        // $request->validate($this->validation);
 
         $data = $request->all();
         // salvare i dati nel db (questo metodo anche se è più lungo è il più sicuro)
@@ -90,7 +104,7 @@ class ComicController extends Controller
      */
     public function edit(Comic $comic)
     {
-        //
+        return view('comics.edit', compact('comic'));
     }
 
     /**
@@ -102,7 +116,35 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-        //
+        //validare i dati metodo 1
+        $request ->validate([
+            'title'=> 'required|string|max:100',
+            'thumb'=> 'required|url',
+            'description' => 'required|string',
+            'series' => 'required|string|max:50',
+            'type' => 'required|string|max:30',
+            'sale_date'=> 'required|date',
+            'price' => 'required|decimal:2',
+            
+        ]);
+
+        //metodo 2
+        // $request->validate($this->validation);
+
+        //aggiornare i dati
+        $data= $request->all();
+
+        $comic->title = $data['title'];
+        $comic->thumb = $data['thumb'];
+        $comic->description = $data['description'];
+        $comic->series = $data['series'];
+        $comic->type = $data['type'];
+        $comic->sale_date = $data['sale_date'];
+        $comic->price = $data['price'];
+        $comic->update();
+
+        //fare il redirect
+        return to_route('comics.show', ['comic'=> $comic->id]);
     }
 
     /**
@@ -113,6 +155,7 @@ class ComicController extends Controller
      */
     public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+        return to_route('comics.index')->with('delete_success', "The comic \"{$comic->title}\" has been deleted");
     }
 }
